@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">EE23 Android</string>
+    <string name="title_item_detail">Item Detail</string>
+    <string name="action_add">Add</string>
+    <string name="ok">Ok</string>
+    <string name="cancel">Cancel</string>
+    <string name="enter_the_url">Enter the url:</string>
+    <string name="new_url">New url</string>
+</resources>
