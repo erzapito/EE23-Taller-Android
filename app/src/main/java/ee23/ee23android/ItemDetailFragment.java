@@ -54,7 +54,7 @@ public class ItemDetailFragment extends Fragment {
 
         // Show the dummy content as text in a TextView.
         if (mItem != null) {
-            ((WebView) rootView.findViewById(R.id.item_detail)).loadUrl(mItem);
+
         }
 
         return rootView;

@@ -65,20 +65,7 @@ public class DBManager {
     }
 
     public List<UserPageInfo> listPages() {
-        Cursor c = null;
-        List<UserPageInfo> result;
-        try {
-            c = db.query(PAGE_TABLE, PAGE_COLS, null, null, null, null, null);
-            result = new ArrayList<>(c.getCount());
-            while (c.moveToNext()) {
-                UserPageInfo info = getPageInfoFromCursor(c);
-                result.add(info);
-            }
-        } finally {
-            if (c != null && !c.isClosed()){
-                c.close();
-            }
-        }
+        List<UserPageInfo> result = new ArrayList<>();
         return result;
     }
 
@@ -90,10 +77,7 @@ public class DBManager {
     }
 
     public void storeUrl(UserPageInfo i) {
-        ContentValues values = new ContentValues();
-        values.put("url", i.url);
-        long id = db.insert(PAGE_TABLE,null,values);
-        i.id = id;
+
     }
 
 }
