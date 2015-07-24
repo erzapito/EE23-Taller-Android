@@ -1,0 +1,214 @@
+% This text is proprietary.
+% It's a part of presentation made by myself.
+% It may not used commercial.
+% The noncommercial use such as private and study is free
+% Sep. 2005 
+% Author: Sascha Frank 
+% University Freiburg 
+% www.informatik.uni-freiburg.de/~frank/
+
+
+\documentclass{beamer}
+%\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usetheme{Antibes}
+%\selectlanguage{spanish}
+\begin{document}
+\title{Introducción a programación en Android}   
+\author{Alexandre Paz, erzapito@gmail.com} 
+\date{\today} 
+
+\frame{\titlepage} 
+
+\frame{\frametitle{Table of contents}\tableofcontents} 
+
+\section{Datos generales}
+\frame{\frametitle{Información general}
+\begin{itemize}
+ \item Se programa en java
+ \item Mucha información se añade en XML
+ \item Permite incluir librerías java y librerías Android
+ \item Permite añadir datos extra en el propio empaquetado
+ \item Limitaciones en tamaño, número de métodos.
+ \item Para mayor rendimiento se puede programar con C++ (NDK) y cargar las librerías usando JNI.
+\end{itemize}
+}
+
+\frame{
+\frametitle{Componentes principales}
+\begin{itemize}
+ \item AndroidManifest.xml: todos los componentes de la aplicación
+ \item Activities: procesos visibles por el usuario
+ \item Services: procesos en segundo plano
+ \item Receivers: recepción de eventos
+\end{itemize}
+}
+
+\section{Interfaz}
+\frame{
+\frametitle{Actividades}
+\begin{itemize}
+ \item Son interacciones únicas con el usuario, como listar elementos, ver un elemento, etc...
+ \item Contienen fragmentos y vistas
+ \item Los fragmentos son conjuntos de vistas que pueden ser cargados por diferentes actividades
+\end{itemize}
+}
+
+\frame{
+\frametitle{Vistas}
+\begin{itemize}
+ \item Etiquetas
+ \item Botones
+ \item Cajas de texto
+ \item Imágenes
+ \item Listados
+ \item Layouts
+ \item ...
+\end{itemize}
+}
+
+\frame{
+\frametitle{Layouts}
+Vistas especiales que agrupan varias vistas y definen como se colocan
+\begin{itemize}
+ \item LinearLayout
+ \item FrameLayout
+ \item RelativeLayout
+\end{itemize}
+}
+
+\frame{
+\frametitle{Recursos}
+Pueden ser ajustados en base a distintos parámetros como el idioma, país, densidad de pantalla, tamaño de pantalla, etc...
+
+\begin{itemize}
+ \item Imágenes
+ \item Layouts
+ \item Menus
+ \item Textos
+ \item Dimensiones
+ \item Estilos
+ \item Animaciones
+\end{itemize}
+}
+
+\frame{
+\frametitle{Animaciones}
+Permiten animar vistas.
+\begin{itemize}
+ \item animaciones por XML: aplicacables a cualquier vista
+ \item Animations: aplicables a cualquier vista
+ \item Animator: aplicables a cualquier cosa
+\end{itemize}
+}
+
+\frame{
+\frametitle{Dialogos}
+\begin{itemize}
+ \item Builders
+ \item Fragmentos
+ \item Predefinidos
+\end{itemize}
+}
+
+\section{Trabajos en segundo plano}
+\frame{
+\frametitle{Servicios}
+\begin{itemize}
+ \item Tareas de larga duración a ejecutar en segundo plano.
+ \item Pueden comunicarse con las actividades para enviar información.
+ \item Para realizar trabajos siguen necesitando hilos o equivalentes.
+\end{itemize}
+}
+
+\frame{
+\frametitle{Hilos de trabajo}
+\begin{itemize}
+ \item Hilo de interfaz: se encarga de pintar las vistas, animaciones y eventos de usuario. Soltará una excepción si se intentan comunicaciones de red.
+ \item Hilos secundarios: creados a mano o a través de otros componentes, no pueden modificar las vistas.
+\end{itemize}
+}
+
+\frame{
+\frametitle{Componentes para trabajar con hilos}
+\begin{itemize}
+ \item Threads: segundo plano
+ \item Handlers: hilo de interfaz
+ \item AsyncTask: mezcla de segundo plano e interfaz
+\end{itemize}
+
+}
+
+\frame{
+\frametitle{AsyncTask}
+\begin{itemize}
+ \item la tarea principal se ejecuta en segundo plano
+ \item tiene metodos de ayuda para el hilo de interfaz para antes, despues y en proceso de la tarea principal.
+ \item facilita transferir información del hilo de segundo plano al de interfaz
+\end{itemize}
+}
+
+
+\section{Persistencia}
+
+\frame{
+\frametitle{Opciones}
+\begin{itemize}
+ \item Ficheros: privados y publicos
+ \item Base de datos: sqlite3
+ \item Preferencias: mapas de nombre a valor escalar
+\end{itemize}
+}
+
+\frame{
+\frametitle{Base de datos}
+\begin{itemize}
+ \item Hacen falta métodos para crear y actualizar
+ \item Existen librerías para facilitar el acceso, como ActiveAndroid
+\end{itemize}
+}
+
+\section{Comunicación entre procesos}
+
+\frame{
+\frametitle{Intent}
+Permiten solicitar al sistema ejecutar una acción.
+\begin{itemize}
+ \item Acción Genérica: SHARE para compartir algo
+ \item Acción Concreta: lanzar una actividad de la aplicación.
+ \item Launcher: para que aparezcan en el menu de aplicaciones.
+ \item Broadcast: eventos para notificar.
+ \item permiten añadir parámetros escalares.
+\end{itemize}
+}
+
+\frame{
+\frametitle{Intent}
+Permiten añadir flags para controlar la ejecución de actividades.
+\begin{itemize}
+ \item Eliminar las actividades anteriores
+ \item Lanzar una nueva actividad sin reutilizar la anterior
+ \item Lanzar una nueva actividad reutilizando la anterior
+ \item Lanzar una actividad en un flujo de trabajo diferente.
+\end{itemize}
+}
+
+\section{Testeo}
+
+\frame{
+\frametitle{}
+\begin{itemize}
+ \item Incluye una extensión de JUnit3 para pruebas unitarias. Limitadas por ciertas condiciones, como dialogos modales.
+ \item Incluye simuladores de dispositivos, aunque se pueden ejecutar todo en dispositivos reales.
+ \item Existen librerías que permiten probar sobre una máquina virtual común, como Robolectric.
+\end{itemize}
+
+}
+
+\section{Conclusión}
+\frame{
+https://github.com/erzapito/EE23-Taller-Android
+}
+
+\end{document}
+
