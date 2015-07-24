@@ -77,6 +77,11 @@ public class ItemListFragment extends ListFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+
+        DBManager dbManager = new DBManager(getActivity());
+        urls = dbManager.listPages();
+        dbManager.close();
 
         // TODO: replace with a real list adapter.
         setListAdapter(new ArrayAdapter<UserPageInfo>(
@@ -161,6 +166,18 @@ public class ItemListFragment extends ListFragment {
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
         inflater.inflate(R.menu.main_activity_actions, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle presses on the action bar items
+        switch (item.getItemId()) {
+            case R.id.action_add:
+                addNewUrl();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     private void addNewUrl() {

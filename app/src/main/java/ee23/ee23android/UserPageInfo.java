@@ -8,4 +8,8 @@ public class UserPageInfo {
     public long id;
     public String url;
 
+    public String toString() {
+        return url;
+    }
+
 }
